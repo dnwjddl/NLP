@@ -47,14 +47,85 @@ pr #pr에 저장했던 리포트 출력
 
 
 ## 텍스트 전처리(Text Preprocessing)
-- 토큰화(Tokenization)
-- 정제(Cleaning) & 정규화(nomalization)
-- 어간 추출(Stemming) & 표제어 추출(Lemmatization)
-- 불용어(Stopword)
-- 정규 표현식(Regular Expression)
-- 정수 인코딩(Integer Encoding)
-- 패딩(Padding)
-- 원-핫 인코딩(One-Hot Encoding)
-- 데이터의 분리(Splitting Data)
-- 한국어 전처리 패키지
+### 토큰화(Tokenization)
+```python
+from nltk.tokenize import word_tokenize
+print(word_tokenize("Don't be fooled by the dark sounding name"))
+```
+```python
+from nltk.tokenize import word_tokenize
+text="I am actively looking for Ph.D. students. and you are a Ph.D. student."
+print(word_tokenize(text))
+
+from nltk.tag import pos_tag
+x=word_tokenize(text)
+pos_tag(x)
+
+from konlpy.tag import Okt  
+okt=Okt()  
+print(okt.morphs("열심히 코딩한 당신, 연휴에는 여행을 가봐요"))
+print(okt.pos("열심히 코딩한 당신, 연휴에는 여행을 가봐요"))  
+print(okt.nouns("열심히 코딩한 당신, 연휴에는 여행을 가봐요"))  
+```
+- morphs:형태소 추출
+- pos: 품사태깅
+- nouns: 명사 추출
+
+### 정제(Cleaning) & 정규화(nomalization)
+- Cleaning: 갖고 있는 코퍼스로부터 노이즈 데이터 제거
+- Normalization: 표현 방법이 다른 단어들을 통합시켜서 같은 단어로 만들어줌
+
+### 어간 추출(Stemming) & 표제어 추출(Lemmatization)
+
+### 불용어(Stopword)
+```python
+from nltk.corpus import stopwords 
+from nltk.tokenize import word_tokenize 
+
+example = "Family is not an important thing. It's everything."
+stop_words = set(stopwords.words('english')) 
+
+word_tokens = word_tokenize(example)
+
+result = []
+for w in word_tokens: 
+    if w not in stop_words: 
+        result.append(w) 
+```
+
+### 정규 표현식(Regular Expression)
+- 병렬 연산을 위해서 여러 문장의 길이를 임의로 동일하게 맞춰주는 작업
+
+### 정수 인코딩(Integer Encoding)
+### 패딩(Padding)
+### 원-핫 인코딩(One-Hot Encoding)
+### 데이터의 분리(Splitting Data)
+
+## Language Model
+단어 시퀀스(문장)에 확률을 할당하는 모델  
+언어 모델을 만드는 방법은 **1) 통계에 기반한 전통적인 언어모델(Statistical Language Model(SLM))** & **2) 인공신경망을 이용한 방법**  
+
+- SLM
+- N-gram 언어 모델
+- 한국어에서의 언어모델 
+- Perplexity
+- 조건부 확률
+
+## 카운트 기반의 단어 표현
+- Bags of Words(BoW)
+- 문서 단어 행렬(Document-Term Matrix, DTM) 
+- TF-IDF(Term Frequency-Inverse Document Frequency)
+
+## 문서 유사도(Document Similarity) 
+- 유클리드 유사도(euclidean distance) 
+- 자카드 유사도(Jaccard Similarity) -> 행렬에서
+- 코사인 유사도(Cosione Similarity)
+
+## Topic Modeling
+### 잠재 의미 분석(Latent Semantic Analysis, LSA)
+### 잠재 디리클레 할당(Latent Dirichlet Allocation, LDA)
+
+## 
+
+
 
